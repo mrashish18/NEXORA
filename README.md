@@ -143,3 +143,15 @@ IIT Madras BS Degree Program
 # ⭐ Built for
 
 Kaya AI India Hackathon 2026
+
+![React](https://img.shields.io/badge/React-19-blue)
+
+![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)
+
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-4-cyan)
+
+![Vite](https://img.shields.io/badge/Vite-8-purple)
+
+![Hackathon](https://img.shields.io/badge/Kaya_AI-Hackathon-success)
+
+![License](https://img.shields.io/badge/License-MIT-green)
