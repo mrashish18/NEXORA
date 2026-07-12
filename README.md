@@ -1,54 +1,16 @@
-<<<<<<< HEAD
-# React + TypeScript + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
-```
-
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
-=======
 # 🚀 NEXORA
 
 <p align="center">
 
-AI-Powered Construction Procurement & Supply Chain Intelligence Platform
+# AI-Powered Construction Procurement & Supply Chain Intelligence Platform
 
 Built for **Kaya AI India Hackathon 2026**
 
-</p>
-
----
-
-## 📸 Preview
-
-<p align="center">
-
-<img src="screenshots/thumbnail.png" width="900">
+![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-7-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-success?style=for-the-badge)
 
 </p>
 
@@ -56,137 +18,260 @@ Built for **Kaya AI India Hackathon 2026**
 
 # 🌍 Overview
 
-NEXORA is an AI-powered construction intelligence platform that transforms procurement, supply chain management, and document analysis into one intelligent workflow.
+NEXORA is an AI-powered Construction Procurement & Supply Chain Intelligence Platform designed to simplify project procurement through AI.
 
-Instead of manually reviewing purchase orders, contracts, invoices, quotations, and vendor documents, NEXORA automatically extracts data, predicts procurement risks, recommends vendors, and assists project managers using AI.
+Instead of manually reviewing purchase orders, invoices, quotations, vendor documents, delivery schedules and contracts, NEXORA automatically extracts information, predicts procurement risks, recommends vendors and provides an intelligent dashboard for project managers.
+
+The platform combines
+
+- 🤖 Artificial Intelligence
+- 📄 OCR Document Processing
+- 📊 Predictive Analytics
+- 🚚 Supply Chain Intelligence
+- 🧠 AI Copilot
+- 📈 Procurement Dashboard
+
+into one modern construction intelligence platform.
 
 ---
 
 # ✨ Features
 
-✅ AI Document Intelligence
-
-✅ OCR + Document Parsing
-
-✅ Procurement Intelligence
-
-✅ Vendor Recommendation Engine
-
-✅ Supply Chain Monitoring
-
-✅ AI Risk Prediction
-
-✅ Construction Analytics Dashboard
-
-✅ AI Copilot Assistant
-
----
-
-# 📊 Screenshots
-
-## Landing Page
-
-<img src="screenshots/landing.png">
+- ✅ AI Document Intelligence
+- ✅ OCR Document Parsing
+- ✅ Procurement Intelligence
+- ✅ Vendor Recommendation Engine
+- ✅ Supply Chain Monitoring
+- ✅ AI Risk Prediction
+- ✅ Construction Analytics Dashboard
+- ✅ AI Copilot Assistant
+- ✅ Smart Recommendation Engine
+- ✅ Live KPI Dashboard
+- ✅ Procurement Risk Analysis
+- ✅ Document Upload & Analysis
+- ✅ Vendor Intelligence
+- ✅ Real-time Analytics
 
 ---
 
-## Dashboard
+# 📸 Project Screenshots
 
-<img src="screenshots/dashboard.png">
+## 🚀 Landing Page
 
----
-
-## Document Intelligence
-
-<img src="screenshots/documents.png">
+![Landing](docs/landing_01.png)
 
 ---
 
-## Procurement Intelligence
+## 📊 Trusted Construction Companies
 
-<img src="screenshots/procurement.png">
-
----
-
-# 🏗 Architecture
-
-<img src="docs/architecture.png">
+![Landing Stats](docs/landing_02.png)
 
 ---
 
-# ⚙ Tech Stack
+## ✨ Platform Features
 
-### Frontend
+![Features](docs/landing_03.png)
 
-- React
+---
+
+## ⚙ Workflow
+
+![Workflow](docs/landing_04.png)
+
+---
+
+## 📈 Live Dashboard
+
+![Dashboard](docs/dashboard_01.png)
+
+---
+
+## 🤖 AI Analytics Dashboard
+
+![Analytics](docs/dashboard_02.png)
+
+---
+
+## 📄 AI Document Upload
+
+![Document Upload](docs/document-analysis_01.png)
+
+---
+
+## 🧠 AI Document Intelligence
+
+![Document Analysis](docs/document-analysis_02.png)
+
+---
+
+## 💡 Procurement Intelligence
+
+![Procurement](docs/document-analysis_03.png)
+
+---
+
+# 🏗 System Architecture
+
+![Architecture](docs/architecture.png)
+
+---
+
+# 🧠 How It Works
+
+```
+Upload Documents
+        │
+        ▼
+OCR + AI Extraction
+        │
+        ▼
+Vendor Analysis
+        │
+        ▼
+Risk Prediction
+        │
+        ▼
+Recommendation Engine
+        │
+        ▼
+Construction Dashboard
+```
+
+---
+
+# 🛠 Tech Stack
+
+## Frontend
+
+- React 19
 - TypeScript
 - Vite
 - Tailwind CSS
 - Lucide React
 
-### Backend (Planned)
+## Backend (Planned)
 
 - Flask
 - Python
+- REST API
 
-### AI
+## AI Modules
 
 - OCR
 - LLM
 - RAG
-- Document Intelligence
 - Predictive Analytics
+- Procurement Intelligence
+- Recommendation Engine
+
+---
+
+# 📂 Project Structure
+
+```
+src
+│
+├── assets
+├── components
+├── hooks
+├── layouts
+├── pages
+├── services
+├── styles
+├── types
+├── utils
+│
+├── App.tsx
+├── main.tsx
+└── index.css
+
+docs
+│
+├── architecture.png
+├── dashboard_01.png
+├── dashboard_02.png
+├── document-analysis_01.png
+├── document-analysis_02.png
+├── document-analysis_03.png
+├── landing_01.png
+├── landing_02.png
+├── landing_03.png
+└── landing_04.png
+```
+
+---
+
+# 🚀 Installation
+
+Clone the repository
+
+```bash
+git clone https://github.com/mrashish18/NEXORA.git
+```
+
+Move into project
+
+```bash
+cd NEXORA
+```
+
+Install dependencies
+
+```bash
+npm install
+```
+
+Start development server
+
+```bash
+npm run dev
+```
+
+Build
+
+```bash
+npm run build
+```
 
 ---
 
 # 🚀 Future Roadmap
 
 - AI Contract Review
-- Construction Supply Chain Prediction
-- Vendor Scoring Engine
-- AI Procurement Assistant
-- Live Project Dashboard
+- Vendor Scoring
 - ERP Integration
-
----
-
-# 📂 Project Structure
-
-```text
-src
- ├── components
- ├── layouts
- ├── pages
- ├── services
- ├── styles
- ├── hooks
- ├── utils
- └── assets
-```
+- BIM Integration
+- AI Chat Assistant
+- Predictive Cost Analysis
+- Invoice Fraud Detection
+- Live Project Monitoring
+- Construction Digital Twin
+- Mobile Application
 
 ---
 
 # 👨‍💻 Author
 
-Ashish Kumar
+**Ashish Kumar**
 
 IIT Madras BS Degree Program
 
+GitHub
+
+https://github.com/mrashish18
+
 ---
 
-# ⭐ Built for
+# ⭐ Built For
 
-Kaya AI India Hackathon 2026
+**Kaya AI India Hackathon 2026**
 
-![React](https://img.shields.io/badge/React-19-blue)
+---
 
-![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)
+# 📜 License
 
-![TailwindCSS](https://img.shields.io/badge/TailwindCSS-4-cyan)
+This project is licensed under the MIT License.
 
-![Vite](https://img.shields.io/badge/Vite-8-purple)
+---
 
-![Hackathon](https://img.shields.io/badge/Kaya_AI-Hackathon-success)
-
-![License](https://img.shields.io/badge/License-MIT-green)
->>>>>>> 1f89a57ba0b669cdf07e5d9237506e010bad9f1d
+## ⭐ If you like this project, consider giving it a Star!
