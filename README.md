@@ -1,277 +1,302 @@
-# 🚀 NEXORA
+# 🚀 NEXORA AI
+### AI-Powered Construction Procurement & Supply Chain Intelligence Platform
 
-<p align="center">
+NEXORA is an AI-powered Construction Procurement & Supply Chain Intelligence Platform that automates document understanding, procurement intelligence, and decision-making using Retrieval-Augmented Generation (RAG), FAISS Vector Search, and Llama 3.2 (Ollama).
 
-# AI-Powered Construction Procurement & Supply Chain Intelligence Platform
-
-Built for **Kaya AI India Hackathon 2026**
-
-![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=white)
-![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
-![Vite](https://img.shields.io/badge/Vite-7-646CFF?style=for-the-badge&logo=vite&logoColor=white)
-![TailwindCSS](https://img.shields.io/badge/TailwindCSS-4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
-![License](https://img.shields.io/badge/License-MIT-success?style=for-the-badge)
-
-</p>
-
----
-
-# 🌍 Overview
-
-NEXORA is an AI-powered Construction Procurement & Supply Chain Intelligence Platform designed to simplify project procurement through AI.
-
-Instead of manually reviewing purchase orders, invoices, quotations, vendor documents, delivery schedules and contracts, NEXORA automatically extracts information, predicts procurement risks, recommends vendors and provides an intelligent dashboard for project managers.
-
-The platform combines
-
-- 🤖 Artificial Intelligence
-- 📄 OCR Document Processing
-- 📊 Predictive Analytics
-- 🚚 Supply Chain Intelligence
-- 🧠 AI Copilot
-- 📈 Procurement Dashboard
-
-into one modern construction intelligence platform.
+Built for the **Kaya AI India Hackathon 2026**.
 
 ---
 
 # ✨ Features
 
-- ✅ AI Document Intelligence
-- ✅ OCR Document Parsing
-- ✅ Procurement Intelligence
-- ✅ Vendor Recommendation Engine
-- ✅ Supply Chain Monitoring
-- ✅ AI Risk Prediction
-- ✅ Construction Analytics Dashboard
-- ✅ AI Copilot Assistant
-- ✅ Smart Recommendation Engine
-- ✅ Live KPI Dashboard
-- ✅ Procurement Risk Analysis
-- ✅ Document Upload & Analysis
-- ✅ Vendor Intelligence
-- ✅ Real-time Analytics
+- 📄 PDF Document Upload
+- 🔍 AI Document Search
+- 🧠 Retrieval-Augmented Generation (RAG)
+- 📚 FAISS Vector Database
+- 🤖 Local LLM using Ollama (Llama 3.2)
+- 📑 OCR-ready Document Processing
+- 📊 Procurement Intelligence
+- ⚠️ Vendor Risk Analysis
+- 📦 Purchase Order & Invoice Understanding
+- 💬 AI Procurement Copilot
 
 ---
 
-# 📸 Project Screenshots
-
-## 🚀 Landing Page
-
-![Landing](docs/landing_01.png)
-
----
-
-## 📊 Trusted Construction Companies
-
-![Landing Stats](docs/landing_02.png)
-
----
-
-## ✨ Platform Features
-
-![Features](docs/landing_03.png)
-
----
-
-## ⚙ Workflow
-
-![Workflow](docs/landing_04.png)
-
----
-
-## 📈 Live Dashboard
-
-![Dashboard](docs/dashboard_01.png)
-
----
-
-## 🤖 AI Analytics Dashboard
-
-![Analytics](docs/dashboard_02.png)
-
----
-
-## 📄 AI Document Upload
-
-![Document Upload](docs/document-analysis_01.png)
-
----
-
-## 🧠 AI Document Intelligence
-
-![Document Analysis](docs/document-analysis_02.png)
-
----
-
-## 💡 Procurement Intelligence
-
-![Procurement](docs/document-analysis_03.png)
-
----
-
-# 🏗 System Architecture
-
-![Architecture](docs/architecture.png)
-
----
-
-# 🧠 How It Works
-
-```
-Upload Documents
-        │
-        ▼
-OCR + AI Extraction
-        │
-        ▼
-Vendor Analysis
-        │
-        ▼
-Risk Prediction
-        │
-        ▼
-Recommendation Engine
-        │
-        ▼
-Construction Dashboard
-```
-
----
-
-# 🛠 Tech Stack
+# 🏗️ Tech Stack
 
 ## Frontend
-
-- React 19
+- React
 - TypeScript
 - Vite
 - Tailwind CSS
-- Lucide React
 
-## Backend (Planned)
-
-- Flask
+## Backend
 - Python
-- REST API
+- Flask
+- Flask-CORS
 
-## AI Modules
+## AI & Machine Learning
+- Sentence Transformers
+- FAISS
+- Ollama
+- Llama 3.2
 
-- OCR
-- LLM
-- RAG
-- Predictive Analytics
-- Procurement Intelligence
-- Recommendation Engine
+## Document Processing
+- PyMuPDF
+- Recursive Text Splitter
 
 ---
 
 # 📂 Project Structure
 
 ```
-src
+NEXORA
 │
-├── assets
-├── components
-├── hooks
-├── layouts
-├── pages
-├── services
-├── styles
-├── types
-├── utils
+├── backend
+│   ├── routes
+│   │   ├── upload.py
+│   │   └── rag.py
+│   │
+│   ├── services
+│   │   ├── pdf_reader.py
+│   │   ├── embeddings.py
+│   │   └── rag_engine.py
+│   │
+│   ├── uploads
+│   ├── vectorstore
+│   ├── app.py
+│   └── config.py
 │
-├── App.tsx
-├── main.tsx
-└── index.css
-
-docs
+├── src
 │
-├── architecture.png
-├── dashboard_01.png
-├── dashboard_02.png
-├── document-analysis_01.png
-├── document-analysis_02.png
-├── document-analysis_03.png
-├── landing_01.png
-├── landing_02.png
-├── landing_03.png
-└── landing_04.png
+└── README.md
 ```
 
 ---
 
-# 🚀 Installation
+# ⚙️ Installation
 
-Clone the repository
-
-```bash
-git clone https://github.com/mrashish18/NEXORA.git
-```
-
-Move into project
+## Clone Repository
 
 ```bash
+git clone https://github.com/yourusername/NEXORA.git
+
 cd NEXORA
 ```
 
-Install dependencies
+---
+
+## Install Backend
+
+```bash
+cd backend
+
+pip install -r requirements.txt
+```
+
+---
+
+## Install Frontend
 
 ```bash
 npm install
 ```
 
-Start development server
+---
+
+# 🤖 Install Ollama
+
+Download
+
+https://ollama.com/download
+
+Pull Llama 3.2
+
+```bash
+ollama pull llama3.2
+```
+
+Run
+
+```bash
+ollama run llama3.2
+```
+
+---
+
+# ▶️ Run Backend
+
+```bash
+cd backend
+
+python app.py
+```
+
+Backend
+
+```
+http://127.0.0.1:5000
+```
+
+---
+
+# ▶️ Run Frontend
 
 ```bash
 npm run dev
 ```
 
-Build
+Frontend
 
-```bash
-npm run build
+```
+http://localhost:5173
+```
+
+---
+
+# 🔌 API Endpoints
+
+## Health
+
+```
+GET /health
+```
+
+---
+
+## Upload PDF
+
+```
+POST /upload
+```
+
+Form Data
+
+```
+file : document.pdf
+```
+
+---
+
+## Index Document
+
+```
+POST /index
+```
+
+```json
+{
+    "filepath":"uploads/document.pdf"
+}
+```
+
+---
+
+## Ask AI
+
+```
+POST /ask
+```
+
+```json
+{
+    "question":"What is NEXORA?"
+}
+```
+
+---
+
+# 🔄 AI Workflow
+
+```
+Upload PDF
+      │
+      ▼
+Extract Text
+      │
+      ▼
+Split into Chunks
+      │
+      ▼
+Generate Embeddings
+      │
+      ▼
+Store in FAISS
+      │
+      ▼
+User Question
+      │
+      ▼
+Semantic Search
+      │
+      ▼
+Relevant Context
+      │
+      ▼
+Llama 3.2 (Ollama)
+      │
+      ▼
+AI Answer
+```
+
+---
+
+# 📸 Demo
+
+### Upload Document
+
+- Upload Procurement PDF
+- Upload Invoice
+- Upload Purchase Order
+
+### AI Query Examples
+
+```
+What is NEXORA?
+
+Summarize this document.
+
+What technologies are used?
+
+What is the future roadmap?
+
+What features does NEXORA provide?
+
+How does NEXORA help construction companies?
 ```
 
 ---
 
 # 🚀 Future Roadmap
 
-- AI Contract Review
-- Vendor Scoring
 - ERP Integration
-- BIM Integration
-- AI Chat Assistant
-- Predictive Cost Analysis
-- Invoice Fraud Detection
-- Live Project Monitoring
-- Construction Digital Twin
+- SAP Integration
+- BIM Support
+- AI Contract Review
+- Predictive Cost Analytics
+- Vendor Recommendation Engine
+- Multi-language OCR
 - Mobile Application
+- Construction Digital Twin
 
 ---
 
-# 👨‍💻 Author
+# 👨‍💻 Developer
 
 **Ashish Kumar**
 
-IIT Madras BS Degree Program
+IIT Madras BS Degree Programme
 
-GitHub
-
-https://github.com/mrashish18
+Python • Flask • AI • RAG • LLM • FAISS • React
 
 ---
 
-# ⭐ Built For
-
-**Kaya AI India Hackathon 2026**
-
----
-
-# 📜 License
+# 📄 License
 
 This project is licensed under the MIT License.
 
 ---
 
-## ⭐ If you like this project, consider giving it a Star!
+# ⭐ If you like this project
+
+Give this repository a ⭐ on GitHub.
