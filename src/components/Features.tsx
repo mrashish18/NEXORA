@@ -18,7 +18,6 @@ export default function Features() {
         "Automatically extract data from purchase orders, invoices, contracts, and delivery challans using AI.",
       color: "from-cyan-500 to-blue-600",
     },
-
     {
       icon: <Truck size={34} />,
       title: "Supply Chain Prediction",
@@ -26,7 +25,6 @@ export default function Features() {
         "Predict shipment delays, inventory shortages, logistics risks and project bottlenecks before they happen.",
       color: "from-purple-500 to-indigo-600",
     },
-
     {
       icon: <FileText size={34} />,
       title: "Smart Procurement",
@@ -34,7 +32,6 @@ export default function Features() {
         "Analyze vendor quotations, purchase requests and contracts using intelligent AI workflows.",
       color: "from-orange-500 to-pink-500",
     },
-
     {
       icon: <Bot size={34} />,
       title: "AI Copilot",
@@ -42,7 +39,6 @@ export default function Features() {
         "Ask questions in natural language and receive instant recommendations powered by Generative AI.",
       color: "from-green-500 to-emerald-600",
     },
-
     {
       icon: <BarChart3 size={34} />,
       title: "Predictive Analytics",
@@ -50,7 +46,6 @@ export default function Features() {
         "Visualize project health, vendor performance, delivery timelines and procurement trends.",
       color: "from-blue-500 to-cyan-600",
     },
-
     {
       icon: <ShieldCheck size={34} />,
       title: "Risk Detection",
@@ -61,22 +56,19 @@ export default function Features() {
   ];
 
   return (
-    <section className="relative overflow-hidden bg-slate-950 py-28">
-
+    <section
+      id="features"
+      className="relative overflow-hidden bg-slate-950 py-28"
+    >
       {/* Top Divider */}
-
-      <div className="absolute top-0 left-0 h-px w-full bg-gradient-to-r from-transparent via-cyan-500/40 to-transparent" />
+      <div className="absolute left-0 top-0 h-px w-full bg-gradient-to-r from-transparent via-cyan-500/40 to-transparent" />
 
       {/* Background Glow */}
-
       <div className="absolute left-0 top-40 h-80 w-80 rounded-full bg-cyan-500/10 blur-[120px]" />
-
-      <div className="absolute right-0 bottom-0 h-96 w-96 rounded-full bg-violet-600/10 blur-[140px]" />
+      <div className="absolute bottom-0 right-0 h-96 w-96 rounded-full bg-violet-600/10 blur-[140px]" />
 
       <div className="relative mx-auto max-w-7xl px-8">
-
         <div className="text-center">
-
           <p className="font-semibold uppercase tracking-[0.3em] text-cyan-400">
             Platform Features
           </p>
@@ -90,11 +82,9 @@ export default function Features() {
             Predictive Analytics and Construction Intelligence
             into one powerful platform.
           </p>
-
         </div>
 
         <div className="mt-20 grid gap-8 md:grid-cols-2 xl:grid-cols-3">
-
           {features.map((feature) => (
             <FeatureCard
               key={feature.title}
@@ -104,11 +94,8 @@ export default function Features() {
               color={feature.color}
             />
           ))}
-
         </div>
-
       </div>
-
     </section>
   );
 }

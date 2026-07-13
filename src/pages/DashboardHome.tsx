@@ -1,9 +1,8 @@
-import DashboardLayout from "../layouts/DashboardLayout";
 import DashboardPreview from "../components/DashboardPreview";
 
 export default function DashboardHome() {
   return (
-    <DashboardLayout>
+    <>
       <div className="mb-8">
         <h1 className="text-4xl font-bold text-white">
           Dashboard
@@ -15,6 +14,6 @@ export default function DashboardHome() {
       </div>
 
       <DashboardPreview />
-    </DashboardLayout>
+    </>
   );
 }

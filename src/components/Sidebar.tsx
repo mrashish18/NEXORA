@@ -8,35 +8,43 @@ import {
   Boxes,
 } from "lucide-react";
 
+import { NavLink } from "react-router-dom";
+
 const menu = [
   {
     icon: <LayoutDashboard size={20} />,
     name: "Dashboard",
-    active: true,
+    path: "/dashboard",
   },
   {
     icon: <Boxes size={20} />,
     name: "Procurement",
+    path: "/procurement",
   },
   {
     icon: <Truck size={20} />,
     name: "Supply Chain",
+    path: "/supply-chain",
   },
   {
     icon: <FileText size={20} />,
     name: "Documents",
+    path: "/documents",
   },
   {
     icon: <Users size={20} />,
     name: "Vendors",
+    path: "/vendors",
   },
   {
     icon: <Bot size={20} />,
     name: "AI Assistant",
+    path: "/assistant",
   },
   {
     icon: <Settings size={20} />,
     name: "Settings",
+    path: "/settings",
   },
 ];
 
@@ -48,7 +56,7 @@ export default function Sidebar() {
 
       <div className="border-b border-white/10 p-8">
 
-        <div className="flex items-center gap-4">
+        <NavLink to="/" className="flex items-center gap-4">
 
           <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-cyan-500 to-blue-600 text-2xl shadow-lg shadow-cyan-500/30">
             🚀
@@ -66,7 +74,7 @@ export default function Sidebar() {
 
           </div>
 
-        </div>
+        </NavLink>
 
       </div>
 
@@ -75,20 +83,26 @@ export default function Sidebar() {
       <nav className="mt-8 flex-1 px-4">
 
         {menu.map((item) => (
-          <button
+
+          <NavLink
             key={item.name}
-            className={`mb-3 flex w-full items-center gap-4 rounded-2xl px-5 py-4 text-left transition-all duration-300 ${
-              item.active
-                ? "bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg shadow-cyan-500/20"
-                : "text-slate-400 hover:bg-slate-800 hover:text-white"
-            }`}
+            to={item.path}
+            className={({ isActive }) =>
+              `mb-3 flex items-center gap-4 rounded-2xl px-5 py-4 transition-all duration-300 ${
+                isActive
+                  ? "bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg shadow-cyan-500/20"
+                  : "text-slate-400 hover:bg-slate-800 hover:text-white"
+              }`
+            }
           >
             {item.icon}
 
             <span className="font-medium">
               {item.name}
             </span>
-          </button>
+
+          </NavLink>
+
         ))}
 
       </nav>

@@ -5,6 +5,8 @@ import {
   Users,
 } from "lucide-react";
 
+import { useNavigate } from "react-router-dom";
+
 import KpiCard from "./KpiCard";
 import ChartPreview from "./ChartPreview";
 import ChatPreview from "./ChatPreview";
@@ -12,8 +14,13 @@ import DocumentList from "./DocumentList";
 import AlertPanel from "./AlertPanel";
 
 export default function DashboardPreview() {
+  const navigate = useNavigate();
+
   return (
-    <section className="relative overflow-hidden bg-slate-950 py-28">
+  <section
+    id="dashboard"
+    className="relative overflow-hidden bg-slate-950 py-28"
+  >
       {/* Background Glow */}
       <div className="absolute left-20 top-20 h-96 w-96 rounded-full bg-cyan-500/10 blur-[140px]" />
       <div className="absolute right-0 bottom-0 h-[420px] w-[420px] rounded-full bg-blue-500/10 blur-[160px]" />
@@ -75,19 +82,13 @@ export default function DashboardPreview() {
         {/* Dashboard */}
 
         <div className="mt-12 grid gap-8 xl:grid-cols-3">
-          {/* Left */}
-
           <div className="space-y-8 xl:col-span-2">
             <ChartPreview />
-
             <DocumentList />
           </div>
 
-          {/* Right */}
-
           <div className="space-y-8">
             <ChatPreview />
-
             <AlertPanel />
           </div>
         </div>
@@ -105,7 +106,10 @@ export default function DashboardPreview() {
             smarter decisions before delays happen.
           </p>
 
-          <button className="mt-8 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-8 py-4 font-semibold text-white shadow-lg shadow-cyan-500/30 transition hover:scale-105">
+          <button
+            onClick={() => navigate("/dashboard")}
+            className="mt-8 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-8 py-4 font-semibold text-white shadow-lg shadow-cyan-500/30 transition hover:scale-105"
+          >
             Explore Full Dashboard
           </button>
         </div>
