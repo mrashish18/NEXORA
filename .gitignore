@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-# Logs
+# Node / Frontend
 logs
 *.log
 npm-debug.log*
@@ -23,7 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-=======
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
@@ -175,6 +174,11 @@ activemq-data/
 
 # Environments
 .env
+.env.*
+!.env.example
+!*.env.example
+.env.local
+.env.production
 .envrc
 .venv
 env/
@@ -242,4 +246,21 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
->>>>>>> 1f89a57ba0b669cdf07e5d9237506e010bad9f1d
+
+# ============================================================
+# NEXORA — Project-Specific
+# ============================================================
+
+# Runtime user-uploaded documents (PDFs, DOCX, TXT)
+backend/uploads/
+
+# FAISS vectorstore — runtime-generated from uploaded documents
+backend/vectorstore/*.index
+backend/vectorstore/*.pkl
+
+# Development-only test page
+backend/test_upload.html
+
+# OS metadata
+Thumbs.db
+desktop.ini

@@ -88,7 +88,7 @@ export default function DashboardPreview() {
           </div>
 
           <div className="space-y-8">
-            <ChatPreview />
+            <ChatPreview compact={true} />
             <AlertPanel />
           </div>
         </div>
@@ -107,10 +107,19 @@ export default function DashboardPreview() {
           </p>
 
           <button
-            onClick={() => navigate("/dashboard")}
-            className="mt-8 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-8 py-4 font-semibold text-white shadow-lg shadow-cyan-500/30 transition hover:scale-105"
+            type="button"
+            onClick={() => {
+              if (window.location.pathname === "/dashboard") {
+                navigate("/assistant");
+              } else {
+                navigate("/dashboard");
+              }
+            }}
+            className="mt-8 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-8 py-4 font-semibold text-white shadow-lg shadow-cyan-500/30 transition hover:scale-105 active:scale-95"
           >
-            Explore Full Dashboard
+            {window.location.pathname === "/dashboard"
+              ? "Launch AI Assistant"
+              : "Explore Full Dashboard"}
           </button>
         </div>
       </div>

@@ -1,17 +1,44 @@
 import os
 from dotenv import load_dotenv
 
+basedir = os.path.dirname(os.path.abspath(__file__))
+load_dotenv(os.path.join(basedir, ".env"))
 load_dotenv()
 
 
 class Config:
     # ==============================
-    # API Keys
+    # Cloud LLM Configuration
     # ==============================
-
+    LLM_PROVIDER = os.getenv("LLM_PROVIDER", "openai").strip().lower()
     OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
-    GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")
-    HUGGINGFACE_API_KEY = os.getenv("HUGGINGFACE_API_KEY", "")
+    OPENAI_BASE_URL = os.getenv("OPENAI_BASE_URL", "").rstrip("/") or None
+    OPENAI_MODEL = os.getenv("OPENAI_MODEL", "gpt-4o-mini")
+    LLM_TIMEOUT_SECONDS = float(os.getenv("LLM_TIMEOUT_SECONDS", "60"))
+    LLM_MAX_RETRIES = int(os.getenv("LLM_MAX_RETRIES", "2"))
+
+    # ==============================
+    # Rate Limiting Configuration
+    # ==============================
+    RATE_LIMIT_ENABLED = os.getenv("RATE_LIMIT_ENABLED", "True").lower() in ("true", "1")
+    RATE_LIMIT_DEFAULT = os.getenv("RATE_LIMIT_DEFAULT", "120 per minute")
+    RATE_LIMIT_ASK = os.getenv("RATE_LIMIT_ASK", "30 per minute")
+    RATE_LIMIT_STREAM = os.getenv("RATE_LIMIT_STREAM", "30 per minute")
+    RATE_LIMIT_UPLOAD = os.getenv("RATE_LIMIT_UPLOAD", "15 per minute")
+    RATE_LIMIT_INDEX = os.getenv("RATE_LIMIT_INDEX", "20 per minute")
+
+    # ==============================
+    # CORS & Server Configuration
+    # ==============================
+    FRONTEND_URL = os.getenv(
+        "FRONTEND_URL",
+        "http://localhost:5173,http://127.0.0.1:5173,https://nexora-virid-xi.vercel.app"
+    )
+
+    @classmethod
+    def get_allowed_origins(cls):
+        origins = [origin.strip() for origin in cls.FRONTEND_URL.split(",") if origin.strip()]
+        return origins if origins else ["http://localhost:5173", "https://nexora-virid-xi.vercel.app"]
 
     # ==============================
     # Upload Configuration
@@ -76,4 +103,4 @@ class Config:
     # Flask
     # ==============================
 
-    DEBUG = True
+    DEBUG = os.getenv("DEBUG", "False").lower() in ("true", "1")

@@ -1,4 +1,5 @@
 import DashboardLayout from "../layouts/DashboardLayout";
+import { useNavigate } from "react-router-dom";
 import {
   Truck,
   Package,
@@ -38,6 +39,8 @@ const shipments = [
 ];
 
 export default function SupplyChain() {
+  const navigate = useNavigate();
+
   return (
     <DashboardLayout>
       <div className="space-y-8">
@@ -217,7 +220,17 @@ export default function SupplyChain() {
               conditions. AI recommends switching to BuildMax Logistics.
             </p>
 
-            <button className="mt-8 rounded-xl bg-red-500 px-6 py-3 text-white font-semibold hover:bg-red-600">
+            <button
+              type="button"
+              onClick={() =>
+                navigate(
+                  `/assistant?prompt=${encodeURIComponent(
+                    "What is the AI recommendation and alternative route for delayed shipment ST-204 from Mumbai to Delhi?"
+                  )}`
+                )
+              }
+              className="mt-8 rounded-xl bg-red-500 px-6 py-3 text-white font-semibold hover:bg-red-600 transition active:scale-95"
+            >
               View Recommendation
             </button>
 

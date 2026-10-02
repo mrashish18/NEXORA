@@ -4,6 +4,7 @@ import {
   ScrollText,
   CheckCircle2,
 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const documents = [
   {
@@ -37,6 +38,8 @@ const documents = [
 ];
 
 export default function DocumentList() {
+  const navigate = useNavigate();
+
   return (
     <div
       className="
@@ -73,6 +76,7 @@ export default function DocumentList() {
         {documents.map((doc) => (
           <div
             key={doc.name}
+            onClick={() => navigate("/documents")}
             className="
               flex
               items-center
@@ -82,6 +86,7 @@ export default function DocumentList() {
               border-white/5
               bg-slate-900/60
               p-4
+              cursor-pointer
               transition-all
               duration-300
               hover:border-cyan-500/30
@@ -130,6 +135,8 @@ export default function DocumentList() {
       {/* Footer */}
 
       <button
+        type="button"
+        onClick={() => navigate("/documents")}
         className="
           mt-8
           w-full
