@@ -257,6 +257,8 @@ backend/uploads/
 # FAISS vectorstore — runtime-generated from uploaded documents
 backend/vectorstore/*.index
 backend/vectorstore/*.pkl
+!backend/vectorstore/construction.index
+!backend/vectorstore/metadata.pkl
 
 # Development-only test page
 backend/test_upload.html

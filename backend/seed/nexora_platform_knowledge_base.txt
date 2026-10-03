@@ -1,0 +1,30 @@
+NEXORA Platform Overview
+AI-Powered Construction Procurement & Supply Chain Intelligence Platform
+
+Platform Overview:
+NEXORA is an AI-powered construction supply chain intelligence platform that transforms procurement documents, purchase order analysis, vendor performance tracking, and risk mitigation into real-time operational insights. Construction companies manage thousands of purchase orders, invoices, contracts, vendor compliance records, and logistics milestones. NEXORA uses artificial intelligence and retrieval-augmented generation (RAG) to automate document understanding, procurement intelligence, and supply chain decision-making.
+
+Landing Page & Capabilities:
+The NEXORA platform highlights AI Document Intelligence, Supply Chain Monitoring, Predictive Procurement Analytics, Smart Vendor Intelligence, Risk Detection, and the conversational AI Copilot.
+
+Executive Dashboard:
+The live dashboard provides procurement KPIs, vendor statistics, shipment delivery performance, budget burn metrics, risk alerts, and an AI Copilot that empowers project managers and procurement directors to make faster, data-backed decisions.
+
+AI Document Intelligence:
+Project teams upload purchase orders, invoices, subcontractor agreements, contracts, and bills of quantities (BOQs) in PDF, DOCX, and TXT formats. Server-side extraction and AI parsing extract structured information including vendor details, PO numbers, delivery milestones, material specifications, and contractual amounts.
+
+Procurement Risk Engine:
+The Procurement Risk Engine proactively evaluates vendor reliability ratings, delivery schedule compliance probabilities, cost overruns, and supply chain bottlenecks. The AI Recommendation Engine suggests approval decisions and alternative backup vendors when risk thresholds are exceeded.
+
+System Architecture:
+The frontend is built using React 18, TypeScript, Vite, and Tailwind CSS. The backend uses Python and Flask with FAISS vector retrieval, Sentence Transformers embeddings, and OpenAI-compatible cloud language models (GPT-4o-mini) to deliver intelligent, grounded procurement responses with verifiable source citations.
+
+Future Roadmap:
+Planned roadmap enhancements include ERP system integrations (SAP, Oracle Construction), BIM model support, automated AI Contract Clause Review, Predictive Cost Analytics, multi-language OCR, mobile field apps, and Construction Digital Twin synchronization.
+
+Standard Construction Procurement Guidelines & Delivery Clauses:
+1. Structural Steel Delivery: Special contract clause: Structural steel must be delivered by 06:00 AM under supervisor signature authorization. Delivery schedules must be coordinated 24 hours in advance to avoid site congestion.
+2. Concrete Panels Delivery: Standard delivery of prefabricated concrete panels must occur strictly between 04:00 AM and 05:30 AM under project supervisor signature authorization.
+3. Quality & Certification: All structural steel deliveries and rebar bundles must have mill test certificates attached and pass physical inspection before site acceptance.
+4. Payment Terms: Standard purchase order payment terms: Net 45 days upon receipt of material and verified site supervisor signoff.
+5. Vendor Compliance: Suppliers must maintain safety compliance and provide active insurance certificates prior to dispatching cargo to active construction zones.

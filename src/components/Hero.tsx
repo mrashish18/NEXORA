@@ -27,7 +27,7 @@ export default function Hero() {
         <div>
 
           <div className="inline-flex rounded-full border border-cyan-500/30 bg-cyan-500/10 px-5 py-2 text-sm text-cyan-300">
-            🚀 Built for Kaya AI India Hackathon 2026
+            ⚡ Next-Gen Construction Supply Chain Intelligence
           </div>
 
           <h1 className="mt-10 text-7xl font-black leading-tight tracking-tight">

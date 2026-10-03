@@ -26,8 +26,8 @@ interface SettingsState {
 }
 
 const defaultSettings: SettingsState = {
-  fullName: "Ashish Kumar",
-  email: "ashish@nexora.ai",
+  fullName: "Project Administrator",
+  email: "admin@nexora.ai",
   emailNotifications: true,
   shipmentAlerts: true,
   aiRecommendations: true,

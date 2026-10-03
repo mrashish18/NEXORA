@@ -230,12 +230,12 @@ export default function Topbar({ onToggleSidebar }: TopbarProps) {
             className="flex items-center gap-2.5 rounded-xl border border-white/10 bg-slate-900 p-1.5 sm:px-3 sm:py-1.5 transition hover:border-cyan-500"
           >
             <img
-              src="https://ui-avatars.com/api/?name=Ashish+Kumar&background=0EA5E9&color=fff"
-              alt="Ashish Kumar"
+              src="https://ui-avatars.com/api/?name=Project+Admin&background=0EA5E9&color=fff"
+              alt="Project Admin"
               className="h-8 w-8 rounded-full ring-1 ring-cyan-500/50"
             />
             <div className="hidden sm:block text-left">
-              <p className="text-xs font-semibold text-white leading-tight">Ashish Kumar</p>
+              <p className="text-xs font-semibold text-white leading-tight">Project Admin</p>
               <p className="text-[10px] text-slate-400">Project Admin</p>
             </div>
           </button>
@@ -244,8 +244,8 @@ export default function Topbar({ onToggleSidebar }: TopbarProps) {
           {showProfileMenu && (
             <div className="absolute right-0 mt-3 w-52 rounded-2xl border border-white/10 bg-slate-900/95 p-2 shadow-2xl backdrop-blur-2xl z-50">
               <div className="p-2 border-b border-white/10">
-                <p className="text-xs font-bold text-white">Ashish Kumar</p>
-                <p className="text-[11px] text-slate-400 font-mono">ashish@nexora.ai</p>
+                <p className="text-xs font-bold text-white">Project Admin</p>
+                <p className="text-[11px] text-slate-400 font-mono">admin@nexora.ai</p>
               </div>
 
               <div className="mt-1 space-y-0.5">
