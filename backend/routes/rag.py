@@ -265,6 +265,6 @@ def ask_ai_stream():
         headers={
             "Cache-Control": "no-cache, no-transform",
             "X-Accel-Buffering": "no",
-            "Connection": "keep-alive",
+            "Connection": "close",
         }
     )

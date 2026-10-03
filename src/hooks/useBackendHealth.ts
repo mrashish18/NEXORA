@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { api } from "../services/api";
 import type { HealthResponse } from "../types/api";
 
@@ -17,18 +17,36 @@ export interface BackendHealthState {
 export function useBackendHealth(pollIntervalMs: number = 20000): BackendHealthState {
   const [data, setData] = useState<HealthResponse | null>(null);
   const [isChecking, setIsChecking] = useState<boolean>(true);
+  const consecutiveFailuresRef = useRef<number>(0);
 
   const checkHealth = useCallback(async () => {
     try {
       const res = await api.health();
-      setData(res);
+      if (res.backend === "online") {
+        consecutiveFailuresRef.current = 0;
+        setData(res);
+      } else {
+        consecutiveFailuresRef.current += 1;
+        setData((prev) => {
+          if (!prev || consecutiveFailuresRef.current >= 2) {
+            return res;
+          }
+          return prev;
+        });
+      }
     } catch {
-      setData({
-        status: "error",
-        backend: "offline",
-        service: "NEXORA RAG Engine",
-        llm: { provider: "unknown", available: false, message: "Unreachable" },
-        knowledge_base: { indexed: false, chunks_count: 0 },
+      consecutiveFailuresRef.current += 1;
+      setData((prev) => {
+        if (!prev || consecutiveFailuresRef.current >= 2) {
+          return {
+            status: "error",
+            backend: "offline",
+            service: "NEXORA RAG Engine",
+            llm: { provider: "unknown", available: false, message: "Unreachable" },
+            knowledge_base: { indexed: false, chunks_count: 0 },
+          };
+        }
+        return prev;
       });
     } finally {
       setIsChecking(false);

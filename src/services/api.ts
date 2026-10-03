@@ -110,7 +110,7 @@ export const api = {
     }
 
     try {
-      const res = await fetchWithTimeout(`${API_BASE_URL}/health`, { method: "GET" }, 5000);
+      const res = await fetchWithTimeout(`${API_BASE_URL}/health`, { method: "GET" }, 12000);
       if (!res.ok) {
         throw new Error(`Health check returned HTTP ${res.status}`);
       }
@@ -280,6 +280,12 @@ export const api = {
                 callbacks.onSources?.(payload.sources || []);
               } else if (payload.type === "done") {
                 callbacks.onDone?.();
+                try {
+                  reader.cancel().catch(() => {});
+                } catch {
+                  // ignore
+                }
+                return;
               } else if (payload.type === "error") {
                 streamReportedError = true;
                 const errMsg =
@@ -288,6 +294,11 @@ export const api = {
                   payload.message ||
                   "Streaming error occurred.";
                 callbacks.onError?.(errMsg);
+                try {
+                  reader.cancel().catch(() => {});
+                } catch {
+                  // ignore
+                }
                 return;
               }
             } catch {
@@ -298,7 +309,7 @@ export const api = {
       }
       callbacks.onDone?.();
     } catch (err: any) {
-      if (err.name === "AbortError") {
+      if (err.name === "AbortError" || signal?.aborted) {
         callbacks.onError?.("Request cancelled.");
         return;
       }
@@ -316,12 +327,19 @@ export const api = {
           callbacks.onSources?.(fallbackRes.sources || []);
           callbacks.onToken(fallbackRes.answer);
           callbacks.onDone?.();
-        } else {
-          callbacks.onError?.(fallbackRes.message || "Failed to generate answer.");
+          return;
+        } else if (fallbackRes.message) {
+          callbacks.onError?.(fallbackRes.message);
+          return;
         }
-      } catch (fallbackErr: any) {
-        callbacks.onError?.(fallbackErr.message || err.message || "Failed to query assistant.");
+      } catch {
+        // Fallback failed
       }
+
+      const friendlyMsg = err.message?.includes("timed out")
+        ? "AI request timed out while server was initializing. Please try again."
+        : "Temporary connection issue with the AI backend. Please retry in a moment.";
+      callbacks.onError?.(friendlyMsg);
     }
   },
 

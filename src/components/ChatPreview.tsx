@@ -125,6 +125,12 @@ export default function ChatPreview({ compact = false }: ChatPreviewProps) {
             abortControllerRef.current = null;
           },
           onError: (errMsg) => {
+            if (errMsg === "Request cancelled.") {
+              setIsLoading(false);
+              setStreamingMessageId(null);
+              abortControllerRef.current = null;
+              return;
+            }
             setErrorMsg(errMsg);
             setMessages((prev) =>
               prev.map((m) =>
