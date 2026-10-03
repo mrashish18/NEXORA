@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
+import ScrollToTop from "./components/ScrollToTop";
 import Landing from "./pages/Landing";
 import Dashboard from "./pages/Dashboard";
 import Documents from "./pages/Documents";
@@ -12,6 +13,7 @@ import Settings from "./pages/Settings";
 export default function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
 
         {/* Landing Page */}

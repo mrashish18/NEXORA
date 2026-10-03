@@ -5,9 +5,46 @@ import type {
   IndexResponse,
 } from "../types/api";
 
-// Get base URL from environment or fall back to local Flask server default
-const RAW_API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://127.0.0.1:5000";
-export const API_BASE_URL = RAW_API_BASE_URL.replace(/\/+$/, "");
+// Resolve API base URL:
+// - In development (import.meta.env.DEV): defaults to local Flask server (http://127.0.0.1:5000)
+// - In production (import.meta.env.PROD): uses explicitly configured VITE_API_BASE_URL
+//   CRITICAL: Never fall back to localhost (http://127.0.0.1:5000) on remote production deployments!
+const rawConfiguredUrl = typeof import.meta.env.VITE_API_BASE_URL === "string"
+  ? import.meta.env.VITE_API_BASE_URL.trim()
+  : "";
+
+const isProduction = import.meta.env.PROD;
+
+const isLocalhostUrl = (url: string): boolean =>
+  /^(https?:\/\/)?(127\.0\.0\.1|localhost)(:\d+)?(\/.*)?$/i.test(url.trim());
+
+const isRunningLocally = typeof window !== "undefined"
+  ? (window.location.hostname === "localhost" ||
+     window.location.hostname === "127.0.0.1" ||
+     window.location.hostname === "[::1]")
+  : false;
+
+function resolveApiBaseUrl(): string {
+  if (rawConfiguredUrl) {
+    // In production, reject localhost/127.0.0.1 if running on a remote domain (e.g. Vercel)
+    if (isProduction && isLocalhostUrl(rawConfiguredUrl) && !isRunningLocally) {
+      return "";
+    }
+    return rawConfiguredUrl.replace(/\/+$/, "");
+  }
+
+  // When unconfigured:
+  // - Localhost dev or preview: defaults to http://127.0.0.1:5000
+  // - Remote production (e.g. Vercel): NEVER point to localhost!
+  if (isProduction && !isRunningLocally) {
+    return "";
+  }
+
+  return "http://127.0.0.1:5000";
+}
+
+export const API_BASE_URL = resolveApiBaseUrl();
+export const IS_BACKEND_CONFIGURED = Boolean(API_BASE_URL);
 
 /**
  * Standard HTTP helper with timeout and error handling
@@ -21,6 +58,12 @@ async function fetchWithTimeout(
   const id = setTimeout(() => controller.abort(), timeoutMs);
 
   try {
+    if (!API_BASE_URL && isProduction && !isRunningLocally) {
+      throw new Error(
+        "Production backend URL is not configured. Set VITE_API_BASE_URL in your Vercel project environment variables."
+      );
+    }
+
     const response = await fetch(url, {
       ...options,
       signal: controller.signal,
@@ -30,8 +73,13 @@ async function fetchWithTimeout(
     if (error.name === "AbortError") {
       throw new Error(`Request timed out after ${timeoutMs / 1000}s. Please check if the backend is responsive.`);
     }
+    if (!API_BASE_URL && isProduction && !isRunningLocally) {
+      throw new Error(
+        "Production backend URL is not configured. Set VITE_API_BASE_URL in your Vercel project environment variables."
+      );
+    }
     throw new Error(
-      `Cannot connect to NEXORA backend at ${API_BASE_URL}. Ensure the backend is running. (${error.message || "Network Error"})`
+      `Cannot connect to NEXORA backend at ${API_BASE_URL || "(unconfigured)"}. Ensure the backend is running. (${error.message || "Network Error"})`
     );
   } finally {
     clearTimeout(id);
@@ -43,6 +91,24 @@ export const api = {
    * Health check endpoint
    */
   async health(): Promise<HealthResponse> {
+    if (!API_BASE_URL) {
+      return {
+        status: "error",
+        backend: "offline",
+        service: "NEXORA RAG Engine",
+        error: "Production backend URL not configured (VITE_API_BASE_URL is unset). Please configure your deployed backend URL in Vercel settings.",
+        llm: {
+          provider: "unknown",
+          available: false,
+          message: "Backend deployment required",
+        },
+        knowledge_base: {
+          indexed: false,
+          chunks_count: 0,
+        },
+      };
+    }
+
     try {
       const res = await fetchWithTimeout(`${API_BASE_URL}/health`, { method: "GET" }, 5000);
       if (!res.ok) {
@@ -149,6 +215,13 @@ export const api = {
     const trimmed = question.trim();
     if (!trimmed) {
       callbacks.onError?.("Question cannot be empty.");
+      return;
+    }
+
+    if (!API_BASE_URL) {
+      callbacks.onError?.(
+        "Production backend URL is not configured. Set VITE_API_BASE_URL in your Vercel project environment variables."
+      );
       return;
     }
 

@@ -46,9 +46,17 @@ class Config:
 
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-    UPLOAD_FOLDER = os.path.join(BASE_DIR, "uploads")
+    # Detect serverless runtime (e.g. Vercel) where root filesystem is read-only
+    IS_SERVERLESS = bool(os.getenv("VERCEL") or os.getenv("AWS_LAMBDA_FUNCTION_NAME"))
 
-    VECTOR_DB_PATH = os.path.join(BASE_DIR, "vectorstore")
+    if IS_SERVERLESS or not os.access(BASE_DIR, os.W_OK):
+        UPLOAD_FOLDER = os.path.join("/tmp", "nexora_uploads")
+        VECTOR_DB_PATH = os.path.join("/tmp", "nexora_vectorstore")
+    else:
+        UPLOAD_FOLDER = os.path.join(BASE_DIR, "uploads")
+        VECTOR_DB_PATH = os.path.join(BASE_DIR, "vectorstore")
+
+    SEED_VECTOR_DB_PATH = os.path.join(BASE_DIR, "vectorstore")
 
     os.makedirs(UPLOAD_FOLDER, exist_ok=True)
     os.makedirs(VECTOR_DB_PATH, exist_ok=True)
@@ -82,6 +90,16 @@ class Config:
 
     METADATA_FILE = os.path.join(
         VECTOR_DB_PATH,
+        "metadata.pkl",
+    )
+
+    SEED_FAISS_INDEX = os.path.join(
+        SEED_VECTOR_DB_PATH,
+        "construction.index",
+    )
+
+    SEED_METADATA_FILE = os.path.join(
+        SEED_VECTOR_DB_PATH,
         "metadata.pkl",
     )
 

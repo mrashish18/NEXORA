@@ -264,3 +264,5 @@ backend/test_upload.html
 # OS metadata
 Thumbs.db
 desktop.ini
+.vercel
+.env*

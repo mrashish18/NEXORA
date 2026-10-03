@@ -31,17 +31,28 @@ export default function ChatPreview({ compact = false }: ChatPreviewProps) {
   const [streamingMessageId, setStreamingMessageId] = useState<string | null>(null);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
+  const chatContainerRef = useRef<HTMLDivElement>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const abortControllerRef = useRef<AbortController | null>(null);
+  const isInitialMount = useRef(true);
 
   const { isOnline, statusText, refetch } = useBackendHealth(15000);
 
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  const scrollToBottom = (smooth = true) => {
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTo({
+        top: chatContainerRef.current.scrollHeight,
+        behavior: smooth ? "smooth" : "auto",
+      });
+    }
   };
 
   useEffect(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+      return;
+    }
     scrollToBottom();
   }, [messages, isLoading]);
 
@@ -242,6 +253,7 @@ export default function ChatPreview({ compact = false }: ChatPreviewProps) {
 
       {/* Chat Messages */}
       <div
+        ref={chatContainerRef}
         className={`mt-4 space-y-4 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-slate-700 ${
           compact ? "max-h-[380px] min-h-[280px]" : "max-h-[520px] min-h-[360px]"
         }`}

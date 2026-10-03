@@ -205,7 +205,7 @@ NEXORA is engineered with responsive layouts tested across multiple viewport siz
 
 | Variable | Description | Default / Example |
 | :--- | :--- | :--- |
-| `VITE_API_BASE_URL` | Backend API URL | `http://127.0.0.1:5000` (Local) / `https://your-api.com` (Prod) |
+| `VITE_API_BASE_URL` | Backend API URL | `http://127.0.0.1:5000` (Local) / `https://nexora-backend-two.vercel.app` (Prod) |
 
 ---
 
@@ -371,6 +371,8 @@ python -m unittest backend/tests/test_security.py -v
 ```
 NEXORA/
 ├── backend/
+│   ├── api/
+│   │   └── index.py              # Vercel serverless Python entry point
 │   ├── routes/
 │   │   ├── upload.py             # Document upload & auto-indexing endpoints
 │   │   └── rag.py                # Query (/ask, /ask/stream, /health)
@@ -386,7 +388,8 @@ NEXORA/
 │   │   └── verify_live_cloud_rag.py # Live cloud integration test script
 │   ├── app.py                    # Flask application entry point & CORS
 │   ├── config.py                 # Centralized configuration & environment loader
-│   ├── requirements.txt          # Python production dependencies
+│   ├── requirements.txt          # Python production dependencies (CPU-optimized)
+│   ├── vercel.json               # Backend Vercel serverless deployment config
 │   └── .env.example              # Backend environment template
 ├── docs/                         # Architecture diagrams & application screenshots
 ├── public/                       # Static web assets
@@ -405,7 +408,7 @@ NEXORA/
 ├── package.json                  # Node.js dependencies and scripts
 ├── README.md                     # Platform documentation
 ├── tsconfig.json                 # TypeScript compiler configuration
-├── vercel.json                   # Vercel SPA routing rewrite rules
+├── vercel.json                   # Frontend Vercel SPA routing rewrite rules
 └── vite.config.ts                # Vite build and development configuration
 ```
 
@@ -413,11 +416,25 @@ NEXORA/
 
 ## 🌐 Production Deployment
 
-- **Frontend**: Deployed live on **Vercel** with SPA rewrite rules in `vercel.json`. Configure `VITE_API_BASE_URL` in project settings.
-- **Backend**: Can be deployed to **Render**, **Railway**, or **Google Cloud Run** using Gunicorn:
-  ```bash
-  gunicorn app:app --bind 0.0.0.0:$PORT --workers 2 --timeout 120
-  ```
+NEXORA is fully deployed in production on Vercel across two dedicated projects:
+
+| Component | Platform | Production URL | Status |
+| :--- | :--- | :--- | :--- |
+| **Frontend UI** | Vercel SPA | [https://nexora-virid-xi.vercel.app](https://nexora-virid-xi.vercel.app) | 🟢 Live & Connected |
+| **Backend API** | Vercel Serverless (Python/Flask) | [https://nexora-backend-two.vercel.app](https://nexora-backend-two.vercel.app) | 🟢 Live & Operational |
+
+### Verified Production Endpoints
+- **Health Check**: `GET https://nexora-backend-two.vercel.app/health` → `{"status": "ok", "backend": "online"}`
+- **RAG Inference**: `POST https://nexora-backend-two.vercel.app/ask` → Grounded answers with citations
+- **SSE Streaming**: `POST https://nexora-backend-two.vercel.app/ask/stream` → Real-time token streaming
+- **Document Upload**: `POST https://nexora-backend-two.vercel.app/upload` → Multi-format parser & auto-indexing
+- **Indexing**: `POST https://nexora-backend-two.vercel.app/index` → FAISS vector index updates
+
+### Serverless Vector Store Persistence Note
+In serverless execution environments such as Vercel:
+- Runtime document uploads and dynamic vector indices are written to `/tmp` (ephemeral container storage allocated per instance).
+- On cold starts, the system falls back seamlessly to the bundled base knowledge base index.
+- For permanent cross-session storage across serverless instances in high-concurrency production deployments, an external managed vector store (e.g., Pinecone, Qdrant, or Supabase pgvector) or cloud object storage (S3 / GCS) can be configured.
 
 ---
 

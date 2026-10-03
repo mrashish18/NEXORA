@@ -85,7 +85,10 @@ export default function Sidebar({ isOpen = false, onClose }: SidebarProps) {
         <div className="flex items-center justify-between border-b border-white/10 p-6">
           <NavLink
             to="/"
-            onClick={onClose}
+            onClick={() => {
+              onClose?.();
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
             className="flex items-center gap-3 transition-opacity hover:opacity-90"
           >
             <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-cyan-500 to-blue-600 text-2xl shadow-lg shadow-cyan-500/30">

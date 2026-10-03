@@ -197,32 +197,26 @@ class EmbeddingService:
 
         print("Loading existing FAISS database...")
 
-        if os.path.exists(Config.FAISS_INDEX):
+        index_path = Config.FAISS_INDEX if os.path.exists(Config.FAISS_INDEX) else (
+            Config.SEED_FAISS_INDEX if hasattr(Config, "SEED_FAISS_INDEX") and os.path.exists(Config.SEED_FAISS_INDEX) else None
+        )
 
-            self.index = faiss.read_index(
-                Config.FAISS_INDEX
-            )
-
-            print("FAISS index loaded.")
-
+        if index_path:
+            self.index = faiss.read_index(index_path)
+            print(f"FAISS index loaded from: {index_path}")
         else:
-
             print("No FAISS index found.")
 
-        if os.path.exists(Config.METADATA_FILE):
+        meta_path = Config.METADATA_FILE if os.path.exists(Config.METADATA_FILE) else (
+            Config.SEED_METADATA_FILE if hasattr(Config, "SEED_METADATA_FILE") and os.path.exists(Config.SEED_METADATA_FILE) else None
+        )
 
-            with open(
-                Config.METADATA_FILE,
-                "rb"
-            ) as f:
-
+        if meta_path:
+            with open(meta_path, "rb") as f:
                 self.documents = pickle.load(f)
-
-            print("Metadata loaded.")
+            print(f"Metadata loaded from: {meta_path}")
             print("Stored Chunks:", len(self.documents))
-
         else:
-
             print("No metadata found.")
 
         print("=" * 60)
